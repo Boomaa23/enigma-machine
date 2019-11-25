@@ -1,4 +1,4 @@
-package com.boomaa.enigma;
+package com.boomaa.enigma.util;
 
 public enum RotorType {
     I('R', "EKMFLGDQVZNTOWYHXUSPAIBRCJ"),
@@ -11,7 +11,7 @@ public enum RotorType {
     public int turnover;
 
     RotorType(char turnover, String wireMap) {
-        this.turnover = wireMap.indexOf(turnover);
+        this.turnover = (int) turnover - 65;
         this.wireMap = new int[wireMap.length()];
         char[] charWireMap = wireMap.toCharArray();
         for(int i = 0;i < charWireMap.length;i++) {

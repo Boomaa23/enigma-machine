@@ -1,7 +1,7 @@
-package com.boomaa.enigma;
+package com.boomaa.enigma.util;
 
 public class Rotor {
-    private int currentPosition, maxIterations = 26;
+    private int currentPosition, maxIterations = 25;
     private RotorType type;
 
     public Rotor(RotorType type, char startingPosition) {
@@ -9,13 +9,14 @@ public class Rotor {
         this.currentPosition = (int) Character.toUpperCase(startingPosition) - 65;
     }
 
-    public void iterate() {
-        iterate(true);
+    public Rotor iterate() {
+        return this.iterate(true);
     }
 
-    public void iterate(boolean turnover) {
+    public Rotor iterate(boolean turnover) {
         if(turnover) { currentPosition++; }
-        if(currentPosition > maxIterations) { currentPosition %= maxIterations + 1; }
+        if(currentPosition > maxIterations - 1) { currentPosition %= maxIterations + 1; }
+        return this;
     }
 
     public boolean checkTurnover() {
@@ -25,6 +26,14 @@ public class Rotor {
     public char cipher(char toCipher) {
         toCipher = Character.toUpperCase(toCipher);
         return (char) (type.wireMap[((toCipher - 65) + currentPosition) % maxIterations] + 65);
+    }
+
+    public String getCurrentPosition() {
+        return String.valueOf((char) (currentPosition + 65));
+    }
+
+    public void setCurrentPosition(String position) {
+        currentPosition = (int) Character.toUpperCase(position.charAt(0)) - 65;
     }
 
     @Override
