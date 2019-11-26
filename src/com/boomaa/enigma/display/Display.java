@@ -1,6 +1,7 @@
 package com.boomaa.enigma.display;
 
 import com.boomaa.enigma.logic.Listeners;
+import com.boomaa.enigma.util.Reflector;
 import com.boomaa.enigma.util.Rotor;
 import com.boomaa.enigma.util.RotorType;
 import com.boomaa.enigma.network.UDPClient;
@@ -17,9 +18,10 @@ import static com.boomaa.enigma.display.DisplayElements.*;
 import com.boomaa.enigma.display.DisplayElements.*;
 
 public class Display extends DisplayHelpers {
-    public static Rotor ROTOR_A = new Rotor(RotorType.I, 'A'),
+    public static Rotor ROTOR_A = new Rotor(RotorType.III, 'A'),
             ROTOR_B = new Rotor(RotorType.II, 'A'),
-            ROTOR_C = new Rotor(RotorType.III, 'A');
+            ROTOR_C = new Rotor(RotorType.I, 'A');
+    public static Reflector REFLECTOR = new Reflector(RotorType.UKW_B);
     public static String[] PLUGBOARD = {};
 
     public static void main(String[] args) {

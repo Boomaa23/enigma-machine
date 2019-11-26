@@ -1,21 +1,24 @@
 package com.boomaa.enigma.util;
 
 public enum RotorType {
-    I('R', "EKMFLGDQVZNTOWYHXUSPAIBRCJ"),
-    II('F', "AJDKSIRUXBLHWTMCQGZNPYFVOE"),
-    III('W', "BDFHJLCPRTXVZNYEIWGAKMUSQO"),
-    IV('K', "ESOVPZJAYQUIRHXLNFTGKDCMWB"),
-    V('A', "VZBRGITYUPSDNHLXAWMJQOFECK");
+    I('Q', "EKMFLGDQVZNTOWYHXUSPAIBRCJ"),
+    II('E', "AJDKSIRUXBLHWTMCQGZNPYFVOE"),
+    III('V', "BDFHJLCPRTXVZNYEIWGAKMUSQO"),
+    IV('J', "ESOVPZJAYQUIRHXLNFTGKDCMWB"),
+    V('Z', "VZBRGITYUPSDNHLXAWMJQOFECK"),
+    UKW_A("EJMZALYXVBWFCRQUONTSPIKHGD"),
+    UKW_B("YRUHQSLDPXNGOKMIEBFZCWVJAT"),
+    UKW_C("FVPJIAOYEDRZXWGCTKUQSBNMHL");
 
-    public int[] wireMap;
+    public String wireMap;
     public int turnover;
 
     RotorType(char turnover, String wireMap) {
         this.turnover = (int) turnover - 65;
-        this.wireMap = new int[wireMap.length()];
-        char[] charWireMap = wireMap.toCharArray();
-        for(int i = 0;i < charWireMap.length;i++) {
-            this.wireMap[i] = ((int) Character.toUpperCase(charWireMap[i])) - 65;
-        }
+        this.wireMap = wireMap;
+    }
+
+    RotorType(String wireMap) {
+        this('A', wireMap);
     }
 }

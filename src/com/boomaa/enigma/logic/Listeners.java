@@ -4,7 +4,6 @@ import com.boomaa.enigma.display.Display;
 import com.boomaa.enigma.display.DisplayElements;
 import com.boomaa.enigma.display.DisplayElements.*;
 import com.boomaa.enigma.display.DisplayHelpers;
-import com.boomaa.enigma.network.NetworkUtils;
 import com.boomaa.enigma.util.EnigmaMessage;
 
 import javax.swing.*;
@@ -17,8 +16,7 @@ public class Listeners {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             EnigmaMessage sendData = new EnigmaMessage(Send.MSG_FIELD.getText());
-            sendData.applyPlugboard().applyRotors();
-            NetworkUtils.sendPacket(sendData.toString(), Send.ADDR_FIELD.getText());
+            sendData.applyPlugboard().applyRotors().send(Send.ADDR_FIELD.getText());
             DisplayHelpers.updateCurrentPositions();
         }
     }

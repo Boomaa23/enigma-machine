@@ -1,6 +1,7 @@
 package com.boomaa.enigma.util;
 
 import com.boomaa.enigma.logic.EnigmaLogic;
+import com.boomaa.enigma.network.NetworkUtils;
 
 public class EnigmaMessage {
     private char[] textChars;
@@ -16,6 +17,11 @@ public class EnigmaMessage {
 
     public EnigmaMessage applyRotors() {
         EnigmaLogic.applyRotors(this);
+        return this;
+    }
+
+    public EnigmaMessage send(String address) {
+        NetworkUtils.sendPacket(new String(textChars), address);
         return this;
     }
 
