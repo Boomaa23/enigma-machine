@@ -35,5 +35,8 @@ public interface DisplayElements {
     }
 
     interface Receive {
+        JTextArea INPUT = new JTextArea(10, 25);
+        JScrollPane SCROLL = new JScrollPane(INPUT,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     }
 }

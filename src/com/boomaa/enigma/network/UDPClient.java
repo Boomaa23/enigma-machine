@@ -1,5 +1,7 @@
 package com.boomaa.enigma.network;
 
+import com.boomaa.enigma.display.DisplayElements;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -21,8 +23,7 @@ public class UDPClient extends Thread {
             while (true) {
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
-                //TODO remove this println after testing
-                System.out.println(new String(packet.getData()));
+                DisplayElements.Receive.INPUT.append(new String(packet.getData()).trim() + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

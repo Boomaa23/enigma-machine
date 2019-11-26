@@ -1,6 +1,5 @@
 package com.boomaa.enigma.display;
 
-import com.boomaa.enigma.logic.DisplayHelpers;
 import com.boomaa.enigma.logic.Listeners;
 import com.boomaa.enigma.util.Rotor;
 import com.boomaa.enigma.util.RotorType;
@@ -8,7 +7,9 @@ import com.boomaa.enigma.network.UDPClient;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
@@ -27,6 +28,7 @@ public class Display extends DisplayHelpers {
         initFrame();
         initSettingsPanel();
         initSendPanel();
+        initReceivePanel();
         addComponents(MAIN_PANEL, SETTINGS_PANEL, SEND_PANEL, RECEIVE_PANEL);
         FRAME.add(MAIN_PANEL);
         FRAME.setVisible(true);
@@ -61,5 +63,12 @@ public class Display extends DisplayHelpers {
         Plugboard.BUTTON.addActionListener(e -> { PLUGBOARD = Plugboard.INPUT.getText().split(", "); });
         addComponents(SETTINGS_PANEL, RotorPos.LABEL, RotorPos.ROTOR_A, RotorPos.ROTOR_B, RotorPos.ROTOR_C, RotorPos.BUTTON,
                 DisplayHelpers.SPACER, Plugboard.LABEL, Plugboard.INPUT, Plugboard.BUTTON);
+    }
+
+    private static void initReceivePanel() {
+        DefaultCaret caret = (DefaultCaret) Receive.INPUT.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        Receive.INPUT.getDocument().addDocumentListener(new Listeners.AutoScrollTextArea());
+        RECEIVE_PANEL.add(Receive.SCROLL);
     }
 }

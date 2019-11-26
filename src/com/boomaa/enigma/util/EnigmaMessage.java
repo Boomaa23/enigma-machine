@@ -6,7 +6,7 @@ public class EnigmaMessage {
     private char[] textChars;
 
     public EnigmaMessage(String text) {
-        this.textChars = text.toUpperCase().toCharArray();
+        this.textChars = text.toUpperCase().replaceAll("\\s","").toCharArray();
     }
 
     public EnigmaMessage applyPlugboard() {

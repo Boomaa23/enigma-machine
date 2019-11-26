@@ -1,11 +1,15 @@
 package com.boomaa.enigma.logic;
 
 import com.boomaa.enigma.display.Display;
+import com.boomaa.enigma.display.DisplayElements;
 import com.boomaa.enigma.display.DisplayElements.*;
+import com.boomaa.enigma.display.DisplayHelpers;
 import com.boomaa.enigma.network.NetworkUtils;
 import com.boomaa.enigma.util.EnigmaMessage;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.event.*;
 
 public class Listeners {
@@ -42,5 +46,30 @@ public class Listeners {
         public void mouseClicked(MouseEvent e) {
             toClear.setText("");
         }
+    }
+
+    public static class AutoScrollTextArea implements DocumentListener {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateLineCount();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateLineCount();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateLineCount();
+            }
+
+            private void updateLineCount() {
+                int lineCount = Receive.INPUT.getLineCount();
+                if (lineCount <= 10) {
+                    Receive.INPUT.setRows(lineCount);
+                    DisplayElements.RECEIVE_PANEL.revalidate();
+                }
+            }
     }
 }

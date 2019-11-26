@@ -1,7 +1,4 @@
-package com.boomaa.enigma.logic;
-
-import com.boomaa.enigma.display.Display;
-import com.boomaa.enigma.display.DisplayElements;
+package com.boomaa.enigma.display;
 
 import javax.swing.*;
 
